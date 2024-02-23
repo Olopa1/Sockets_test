@@ -1,7 +1,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include "common.h"
-#include <string.h>
+#include <cstring>
 
 using namespace std;
 

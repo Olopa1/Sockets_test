@@ -4,4 +4,4 @@
 struct message_t{
     char user_name[21];
     char message[1024];
-}
+};
