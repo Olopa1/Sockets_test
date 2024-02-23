@@ -1,0 +1,2 @@
+#define SERVER_IP "192.168.0.100"
+#define WORKING_PORT 53000
