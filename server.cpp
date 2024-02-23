@@ -2,11 +2,13 @@
 #include <iostream>
 #include "common.h"
 #include <cstring>
+#include <stdio.h>
+#include <string>
 
 using namespace std;
 
 int main(){
-    cout << "Server\n";
+    cout << "Server\n" /*<< sizeof(struct message_t) << "\n"*/;
     sf::TcpListener listener;
     if(listener.listen(WORKING_PORT)!= sf::Socket::Done){
         cout << "Cos poszlo nie tak\n";
@@ -21,12 +23,13 @@ int main(){
 
         struct message_t recv_mess;
         size_t bytes_returned;
-        if(client.receive(&recv_mess,sizeof(recv_mess),bytes_returned)!=sf::Socket::Done){
+        if(client.receive(&recv_mess,sizeof(struct message_t),bytes_returned)!=sf::Socket::Done){
             cout << "Cos poszlo nie tak";
         }
 
         sf::IpAddress client_addr = client.getRemoteAddress();
-        cout << "Otrzymana wiadomosc od <"<< recv_mess.user_name << "|" << client_addr << "> " << recv_mess.message << endl;
+
+        cout << "Otrzymana wiadomosc od <"<< recv_mess.user_name << "|" << client_addr << "> " << bytes_returned << endl;
 
         const char* server_message = "Wiadomosc otrzymana\n";
         if(client.send(server_message,strlen(server_message))!=sf::Socket::Done){

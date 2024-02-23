@@ -3,6 +3,7 @@
 #include "common.h"
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 using namespace std;
 
 int main(){
@@ -17,9 +18,9 @@ int main(){
     struct message_t mess;
     
     cout << "Podaj nazwe uzytkownika:\n";
-    cin >> mess.user_name;
-    cout << "\nPodaj wiadomosc maks 1024 znaki";
-    cin >> mess.message;
+    scanf("%20[^\n]",&mess.user_name);
+    cout << "\nPodaj wiadomosc maks 1024 znaki:\n";
+    scanf("%1023[^\n]",&mess.user_name);
 
     if(socket.send(&mess,sizeof(struct message_t))!= sf::Socket::Done){
         cout << "Cos poszlo nie tak\n";
