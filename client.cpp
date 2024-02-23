@@ -12,16 +12,22 @@ int main(){
     if(status != sf::Socket::Done){
         cout << "Cos poszlo nie tak\n";
     }
+    char server_res[100];
+    size_t response_size;
+    struct message_t mess;
+    
+    cout << "Podaj nazwe uzytkownika:\n";
+    cin >> mess.user_name;
+    cout << "\nPodaj wiadomosc maks 1024 znaki";
+    cin >> mess.message;
 
-    const char *data = "Tekst z klienta";
-    for (size_t i = 0; i < 10; i++)
-    {    
-        sleep(2);
-        if(socket.send(data,strlen(data))!= sf::Socket::Done){
-            cout << "Cos poszlo nie tak\n";
-        }
-
+    if(socket.send(&mess,sizeof(struct message_t))!= sf::Socket::Done){
+        cout << "Cos poszlo nie tak\n";
     }
 
+    if(socket.receive(server_res,100,response_size)!=sf::Socket::Done){
+        cout << "Cos poszlo nie tak";
+    }
+    cout << "Odpowiedz servera: " << server_res;
     return 0;
 }
