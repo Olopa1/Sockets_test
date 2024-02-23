@@ -29,7 +29,7 @@ int main(){
 
         sf::IpAddress client_addr = client.getRemoteAddress();
 
-        cout << "Otrzymana wiadomosc od <"<< recv_mess.user_name << "|" << client_addr << "> " << bytes_returned << endl;
+        cout << "Otrzymana wiadomosc od <"<< recv_mess.user_name << "|" << client_addr << "> " << recv_mess.message << endl;
 
         const char* server_message = "Wiadomosc otrzymana\n";
         if(client.send(server_message,strlen(server_message))!=sf::Socket::Done){

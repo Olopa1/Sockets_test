@@ -18,8 +18,10 @@ int main(){
     struct message_t mess;
     
     cout << "Podaj nazwe uzytkownika:\n";
+    while(getchar()!='\n');
     scanf("%20[^\n]",mess.user_name);
     cout << "\nPodaj wiadomosc maks 1024 znaki:\n";
+    while(getchar()!='\n');
     scanf("%1023[^\n]",mess.message);
 
     if(socket.send(&mess,sizeof(struct message_t))!= sf::Socket::Done){
