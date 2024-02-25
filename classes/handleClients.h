@@ -6,21 +6,24 @@ class handleClients{
 
 private:
     struct client_data{
+        char client_name[20];
         sf::TcpSocket *socket;
         sf::IpAddress socket_addr;
     };
     
     std::vector<struct client_data> clients_sockets;
-    size_t clients_count;
+    int clients_count;
     sf::SocketSelector socket_group;
 
 public:
     handleClients();
     ~handleClients();
     void add_client(sf::TcpSocket *socket);
-    bool send_to_client(void *data, size_t data_size, struct client_data &c_data);
-    bool send_to_all();
+    bool send_to_client(void *data, size_t data_size,const struct client_data &reciver);
+    bool send_to_all(void *data, size_t data_size);
     bool wait_for_message();
-    struct message_t recive_message(int *error);
+    int recive_message(void* buffor,size_t buff_size,size_t data_recived);
+    void client_disconnect();
+    void print_message(struct message_t &message, int index);
 };
 

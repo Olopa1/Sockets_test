@@ -3,5 +3,6 @@
 
 struct message_t{
     char user_name[21];
+    char command[100];
     char message[1024];
 };
